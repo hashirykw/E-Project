@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Fitness - Home</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="Prime fitness (logo).jpeg" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+
+    body {
+      padding-top: 80px;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.9rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-family: serif;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #fff;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: #00ffff;
+      box-shadow: 0 0 8px #00ffff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    .dropdown-menu {
+      background-color: #222;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    .dropdown-item:hover {
+      background-color: #00ffff;
+      color: #000;
+    }
+
+    .nav-item.dropdown .dropdown-menu {
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+    }
+
+    .navbar {
+      background: #111;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    .navbar-nav {
+      margin: 0 auto;
+    }
+
+    @media (max-width:768px) {
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+
+      .nav-link {
+        margin: 0.3rem 0;
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: #000000;
+      text-shadow: 0 0 20px #00ffff;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      text-shadow: 0 0 20px #00ffff;
+      color: #00ffff;
+      margin-top: 10px;
+    }
+
+    .btn-hero {
+      margin-top: 20px;
+      padding: 14px 32px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 30px;
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 14px #00ffff60;
+      transition: 0.3s;
+    }
+
+    .btn-hero:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 35px #00ffff;
+      background: #00cccc;
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      padding: 0 20px;
+      margin-bottom: 40px;
+      /* space between hero and carousel */
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      /* keeps the video behind the hero text */
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .facility-card,
+    .trainer-card {
+      background: #111;
+      border-radius: 18px;
+      padding: 18px;
+      transition: 0.3s;
+      box-shadow: 0 0 14px #00ffff25;
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      height: 100%;
+    }
+
+    .facility-card:hover,
+    .trainer-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 0 26px #00ffff;
+    }
+
+    .facility-card h5,
+    .trainer-card h5 {
+      color: #00ffff;
+      font-weight: 700;
+      text-shadow: 0 0 6px #00ffff70;
+    }
+
+    .section-title {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff60;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .bmi-container {
+      max-width: 520px;
+      margin: 40px auto;
+      padding: 22px;
+      background: #111;
+      border-radius: 14px;
+      border: 1px solid #00ffff30;
+      box-shadow: 0 0 12px #00ffff20;
+    }
+
+    .bmi-input {
+      background: #222;
+      border: 2px solid #00ffff60;
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .bmi-input:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 12px #00ffff;
+      outline: none;
+    }
+
+    .btn-bmi {
+      background: #00ffff;
+      color: #000;
+      font-weight: 700;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-bmi:hover {
+      background: #00cccc;
+      color: #fff;
+      box-shadow: 0 0 18px #00ffff;
+    }
+
+    #bmiResult {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    #bmiFallback {
+      display: none;
+      background: #222;
+      border: 1px dashed #00ffff50;
+      padding: 18px;
+      border-radius: 8px;
+      text-align: center;
+      color: #ccc;
+      margin-top: 15px;
+    }
+
+    .stats-box {
+      background: #111;
+      padding: 22px;
+      border-radius: 12px;
+      border: 1px solid #00ffff20;
+      box-shadow: 0 0 14px #00ffff15;
+      min-width: 170px;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    .stats-box h3 {
+      color: #00ffff;
+      font-weight: 700;
+    }
+
+    .stats-box:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 18px #00ffff30;
+    }
+
+    .hover-animate {
+      transform: translateY(-8px) scale(1.03) !important;
+      box-shadow: 0 0 26px #00ffff !important;
+    }
+
+    .simple-footer {
+      background: #0b0b0b;
+      border-top: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 -2px 15px rgba(0, 255, 255, 0.15);
+    }
+
+    .footer-text {
+      color: #cccccc;
+      font-size: 0.95rem;
+    }
+
+    .footer-icons a {
+      color: #e0e0e0;
+      font-size: 22px;
+      margin: 0 8px;
+      transition: 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      transform: translateY(-3px);
+    }
+
+    .simple-footer img {
+      width: 22px !important;
+      height: 22px !important;
+      object-fit: contain;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">
+        <img src="Prime fitness (logo).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
+        Prime Fitness
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="equipments.html">Equipments</a></li>
+          <li class="nav-item"><a class="nav-link" href="enquiry.html">Enquiry</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              More
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="membership.html">Membership</a></li>
+              <li><a class="dropdown-item" href="trainer.html">Trainers</a></li>
+              <li><a class="dropdown-item" href="contact.html">Contact</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="site_map.html">Site Map</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- ✅ NAVBAR END -->
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
+
+    <h1>Unleash Your Prime</h1>
+    <p>Redefine Strength · Wellness · Lifestyle</p>
+    <a href="membership.html" class="btn btn-hero">Join Now</a>
+  </section>
+
+
+  <!-- CAROUSEL -->
+  <section>
+    <div class="container">
+      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active"><img src="cycling5.PNG" class="d-block w-100" /></div>
+          <div class="carousel-item"><img src="gym.PNG" class="d-block w-100" /></div>
+          <div class="carousel-item"><img src="swim1.PNG" class="d-block w-100" /></div>
+          <div class="carousel-item"><img src="salon and spa5.PNG" class="d-block w-100" /></div>
+        </div>
+        <button class="carousel-control-prev" data-bs-target="#heroCarousel" data-bs-slide="prev"><span
+            class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" data-bs-target="#heroCarousel" data-bs-slide="next"><span
+            class="carousel-control-next-icon"></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS COUNTER -->
+  <div class="container mt-5">
+    <h2 class="section-title">Our Achievements</h2>
+    <div class="d-flex justify-content-center flex-wrap text-center" id="statsBox">
+      <a href="membership.html" class="text-decoration-none text-white">
+        <div class="stats-box">
+          <h3 class="counter" data-count="1500">1500</h3>
+          <p>Members Trained</p>
+        </div>
+      </a>
+      <a href="trainer.html" class="text-decoration-none text-white">
+        <div class="stats-box">
+          <h3 class="counter" data-count="10">10</h3>
+          <p>Expert Trainers</p>
+        </div>
+      </a>
+      <a href="about.html" class="text-decoration-none text-white">
+        <div class="stats-box">
+          <h3 class="counter" data-count="1982">1982</h3>
+          <p>Till Now Making You Fit</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FACILITY CARDS -->
+  <section id="facilities" class="container mt-5">
+    <h2 class="section-title">Our Core Facilities</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Cycling</h5>
+          <p>Boost your stamina with high-intensity cycling</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Swimming</h5>
+          <p>Train & relax in our indoor temperature-controlled pool</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Sports & Fitness</h5>
+          <p>Gym, indoor courts, personal coaching & athletic training</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Group Exercise</h5>
+          <p>Zumba, HIIT, Aerobics, Boxing, Dance & Core classes</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Membership</h5>
+          <p>Flexible plans with exclusive member perks & priority booking</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Salon & Spa</h5>
+          <p>Premium grooming, massage therapy, sauna & steam rooms</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Yoga & Meditation</h5>
+          <p>Mind calming, flexibility building, stress release programs</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Nutrition Guidance</h5>
+          <p>Diet planning, supplements, weight-loss & muscle-gain coaching</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="facility-card text-center">
+          <h5>Kids Fitness</h5>
+          <p>Swimming classes, sports coaching & fun fitness activities</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BMI CALCULATOR PLACEHOLDER SECTION -->
+  <section id="bmi" class="container mt-5">
+    <div class="bmi-container">
+      <h3 class="text-center text-info fw-bold">BMI Calculator</h3>
+      <div id="bmiPlaceholderUI">
+        <input type="text" id="bmiHeight" class="form-control bmi-input mb-3"
+          placeholder="Enter height in meters (e.g. 1.75)" />
+        <input type="text" id="bmiWeight" class="form-control bmi-input mb-3"
+          placeholder="Enter weight in kg (e.g. 72)" />
+        <button id="calcBMI" class="btn-bmi">Calculate BMI</button>
+        <div id="bmiResult"></div>
+      </div>
+      <div id="bmiFallback">⚠ BMI calculator will appear here</div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="container mt-5 text-center">
+    <h3 class="text-info fw-bold">Get Fitness Tips & Exclusive Offers</h3>
+    <input class="form-control w-50 mx-auto mt-2 bmi-input" placeholder="Enter Email to Subscribe" />
+    <button id="subscribeBtn" class="btn btn-custom mt-3 btn-hero">Subscribe</button>
+
+  </div>
+
+  <!-- NEWSLETTER SUCCESS MODAL -->
+  <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white text-center"
+        style="border:1px solid #00ffff; box-shadow:0 0 20px #00ffff;">
+
+        <div class="modal-header border-0">
+          <h5 class="modal-title text-info fw-bold">Subscribed Successfully</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <p style="font-size:1.1rem;">✅ You will be kept updated with fitness tips & offers!</p>
+        </div>
+
+        <div class="modal-footer border-0 justify-content-center">
+          <button type="button" class="btn btn-hero" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="simple-footer text-center py-3 mt-5">
+    <p class="footer-text mb-1">© 2025 Prime Fitness — All Rights Reserved</p>
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/"> <img src="facebook.png"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/"> <img src="instagram.png"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.youtube.com/"> <img src="youtube.png"> <i class="bi bi-youtube"></i></a>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".counter").each(function () {
+        let display = $(this);
+        let target = display.attr("data-count");
+        $({ count: 0 }).animate({ count: target }, {
+          duration: 2500,
+          step: function (val) { display.text(Math.floor(val)); }
+        });
+      });
+
+      if ($("#calcBMI").length) {
+        $("#calcBMI").click(function () {
+          let h = parseFloat($("#bmiHeight").val());
+          let w = parseFloat($("#bmiWeight").val());
+          if (h > 0 && w > 0) {
+            let bmi = (w / (h * h)).toFixed(2);
+            $("#bmiResult").text(`Your BMI: ${bmi}`);
+          } else {
+            $("#bmiResult").text("⚠ Please enter valid numbers");
+          }
+        });
+      } else {
+        $("#bmiFallback").show();
+      }
+    });
+    $("#subscribeBtn").click(function () {
+      let email = $(this).prev("input").val();
+
+      if (email.trim() !== "") {
+        let modal = new bootstrap.Modal(document.getElementById("newsletterModal"));
+        modal.show();
+      } else {
+        alert("⚠ Please enter your email first");
+      }
+    });
+  </script>
+</body>
+
+</html>

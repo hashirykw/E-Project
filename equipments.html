@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Fitness - Equipments</title>
+
+  <!-- Bootstrap CSS (kept same as gallery) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Favicon (keep your file name) -->
+  <link rel="icon" type="image/jpeg" href="Prime fitness (logo).jpeg" />
+
+  <!-- Theme & Navbar CSS (copied from gallery - blue neon) -->
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+      /* keeps it above all content */
+    }
+
+    body {
+      padding-top: 80px;
+      /* adjust based on your navbar height */
+    }
+
+
+    /* Navbar brand styling */
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.9rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-family: serif;
+    }
+
+    /* Neon hover effect */
+    .nav-link {
+      position: relative;
+      color: #fff;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      /* adds space around each link */
+      margin: 0 0.5rem;
+      /* adds horizontal spacing between links */
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: #00ffff;
+      box-shadow: 0 0 8px #00ffff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    /* Dropdown styling */
+    .dropdown-menu {
+      background-color: #222;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    .dropdown-item {
+      color: #fff;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #00ffff;
+      color: #000;
+    }
+
+    /* Center dropdown under parent */
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .nav-item.dropdown .dropdown-menu {
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+    }
+
+    /* Navbar background */
+    .navbar {
+      background-color: #111;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    /* Center links */
+    .navbar-nav {
+      margin: 0 auto;
+      /* centers the whole nav list */
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+
+      .nav-link {
+        margin: 0.3rem 0;
+        /* stack spacing for mobile */
+      }
+    }
+
+    /* Equipment cards styling (keeps neon theme and hover effects) */
+    .equip-container {
+      max-width: 1100px;
+      margin: 36px auto;
+      padding: 12px;
+    }
+
+    .page-heading {
+      text-align: center;
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+
+    .page-heading h1 {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-weight: 700;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 992px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .equip-card {
+      background: #111;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid rgba(0, 255, 255, 0.12);
+      box-shadow: 0 6px 20px rgba(0, 255, 255, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .equip-card h3 {
+      margin: 0 0 6px 0;
+      color: #fff;
+      font-size: 1.15rem;
+    }
+
+    .equip-card p {
+      margin: 0;
+      color: #cfeff0;
+      font-size: 0.95rem;
+    }
+
+    .equip-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.18);
+      border-color: rgba(0, 255, 255, 0.4);
+    }
+
+    /* Modal gallery inside popup */
+    .modal-body .machine-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: center;
+    }
+
+    .modal-body .machine-item img {
+      width: 140px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 255, 255, 0.08);
+      box-shadow: 0 4px 14px rgba(0, 255, 255, 0.06);
+    }
+
+    .modal-body .machine-item .mi-text {
+      line-height: 1.15;
+    }
+
+    /* small helper */
+    .muted {
+      color: #bfeff0;
+      font-size: .95rem;
+    }
+
+    /* ===== SIMPLE FOOTER ===== */
+
+    .simple-footer {
+      background: #0b0b0b;
+      border-top: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 -2px 15px rgba(0, 255, 255, 0.15);
+    }
+
+    .footer-text {
+      color: #cccccc;
+      font-size: 0.95rem;
+    }
+
+    .footer-icons a {
+      color: #e0e0e0;
+      font-size: 22px;
+      margin: 0 8px;
+      transition: 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      transform: translateY(-3px);
+    }
+
+    .simple-footer img {
+      width: 22px !important;
+      /* Adjust to your liking */
+      height: 22px !important;
+      object-fit: contain;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar (copied exactly from your gallery) -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">
+        <img src="Prime fitness (logo).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
+        Prime Fitness
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="equipments.html">Equipments</a></li>
+          <li class="nav-item"><a class="nav-link" href="enquiry.html">Enquiry</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              More
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="membership.html">Membership</a></li>
+              <li><a class="dropdown-item" href="trainer.html">Trainers</a></li>
+              <li><a class="dropdown-item" href="contact.html">Contact</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="site_map.html">Site Map</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page heading & cards -->
+  <div class="equip-container">
+    <div class="page-heading">
+      <h1>Equipments & Machines</h1>
+      <p class="muted">Your Tool's</p>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+      <!-- Cards inserted by JS below -->
+    </div>
+  </div>
+
+  <!-- Modal (Bootstrap) -->
+  <div class="modal fade" id="equipModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="background:#081212; border:1px solid rgba(0,255,255,0.12); color:#fff;">
+        <div class="modal-header" style="border-bottom:1px solid rgba(0,255,255,0.06);">
+          <h5 class="modal-title" id="modalTitle"></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody" style="padding:18px;"></div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== SIMPLE FOOTER START ===== -->
+  <footer class="simple-footer text-center py-3 mt-5">
+    <p class="footer-text mb-1">© 2025 Prime Fitness — All Rights Reserved</p>
+
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/"> <img src="facebook.png"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/"> <img src="instagram.png"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.youtube.com/"> <img src="youtube.png"> <i class="bi bi-youtube"></i></a>
+    </div>
+  </footer>
+  <!-- ===== SIMPLE FOOTER END ===== -->
+
+
+
+  <!-- Scripts -->
+  <script>
+    /* Equipment list: 12 cards required by you.
+       Each entry has:
+         - name: card title
+         - short: small tagline shown on card
+         - machines: array of 4 machine objects with image, name, short, impacts, how-to
+       I populated image placeholders with suggested filenames you can replace:
+       e.g. back1.PNG, back2.PNG ... bicep1.PNG ... spa1.PNG etc.
+    */
+    const equipmentList = [
+      {
+        name: "Back",
+        short: "Lats, traps, lower back focus",
+        machines: [
+          { img: "back1.PNG", title: "Lat Pulldown", short: "Wide lat engagement", impact: "Lats, upper back, posture", how: "Sit tall, pull bar to chest — controlled reps." },
+          { img: "back2.PNG", title: "Seated Cable Row", short: "Mid back thickness", impact: "Rhomboids, middle traps, lats", how: "Retract shoulder blades, squeeze at peak." },
+          { img: "back3.PNG", title: "T-Bar Row", short: "Strength & thickness", impact: "Mid back, lats, rear delts", how: "Keep chest up, pull to the torso." },
+          { img: "back4.PNG", title: "Back Extension", short: "Lower back builder", impact: "Spinal erectors, glutes", how: "Hinge at hips, control up & down." }
+        ]
+      },
+      {
+        name: "Biceps",
+        short: "Arm peaks & curls",
+        machines: [
+          { img: "bicep1.PNG", title: "Preacher Curl", short: "Isolated peak work", impact: "Biceps brachii", how: "Control negative, avoid swinging." },
+          { img: "bicep2.PNG", title: "Cable Curl", short: "Constant tension", impact: "Biceps long head", how: "Slow squeeze at top of each rep." },
+          { img: "bicep3.PNG", title: "Hammer Curl", short: "Brachialis & forearm", impact: "Brachialis, forearm", how: "Neutral grip, steady tempo." },
+          { img: "bicep4.PNG", title: "Machine Curl", short: "Stable isolated curls", impact: "Biceps overall", how: "Adjust seat, full-range reps." }
+        ]
+      },
+      {
+        name: "Forearms",
+        short: "Grip & wrist strength",
+        machines: [
+          { img: "forearm1.PNG", title: "Wrist Curl", short: "Forearm flexors", impact: "Wrist flexors", how: "Controlled wrist flexion & extension." },
+          { img: "forearm2.PNG", title: "Reverse Wrist Curl", short: "Extensors", impact: "Wrist extensors", how: "Slow and steady reps." },
+          { img: "forearm3.PNG", title: "Grip Trainer", short: "Grip endurance", impact: "Hands & forearms", how: "Multiple reps & holds." },
+          { img: "forearm4.PNG", title: "Forearm Roller", short: "Endurance tool", impact: "Forearm muscles & tendon strength", how: "Roll slow with steady tension." }
+        ]
+      },
+      {
+        name: "Triceps",
+        short: "Arm strength & press power",
+        machines: [
+          { img: "tricep1.PNG", title: "Rope Pushdown", short: "Triceps isolation", impact: "Lateral & long head", how: "Full extension, open ropes at bottom." },
+          { img: "tricep2.PNG", title: "Dip Station", short: "Bodyweight builder", impact: "Triceps chest shoulders", how: "Keep torso upright for triceps focus." },
+          { img: "tricep3.PNG", title: "Overhead Extension", short: "Long head focus", impact: "Long head triceps", how: "Stabilize elbows, full range." },
+          { img: "tricep4.PNG", title: "Skull Crusher Bench", short: "Mass builder", impact: "Triceps overall", how: "Slow negative, elbows steady." }
+        ]
+      },
+      {
+        name: "Chest",
+        short: "Presses & flyes",
+        machines: [
+          { img: "chest1.PNG", title: "Flat Bench Press", short: "Mass & strength", impact: "Pectorals, triceps, delts", how: "Stable setup, drive through chest." },
+          { img: "chest2.PNG", title: "Incline Press", short: "Upper chest", impact: "Upper pecs & shoulders", how: "Slight incline, controlled descent." },
+          { img: "chest3.PNG", title: "Chest Fly", short: "Inner chest shaping", impact: "Pec isolation", how: "Wide arc, squeeze at peak." },
+          { img: "chest4.PNG", title: "Cable Crossover", short: "Definition & finishers", impact: "Inner chest", how: "Cross hands slightly for contraction." }
+        ]
+      },
+      {
+        name: "Legs",
+        short: "Quads, hamstrings, calves",
+        machines: [
+          { img: "legs1.PNG", title: "Leg Press", short: "Full lower-body push", impact: "Quads, glutes, hamstrings", how: "Foot placement alters emphasis." },
+          { img: "legs2.PNG", title: "Leg Curl", short: "Hamstring focus", impact: "Hamstrings", how: "Control contraction, avoid momentum." },
+          { img: "legs3.PNG", title: "Leg Extension", short: "Quad isolation", impact: "Quads", how: "Pause at top for full contraction." },
+          { img: "legs4.PNG", title: "Standing Calf Raise", short: "Calf development", impact: "Gastrocnemius, soleus", how: "Full stretch and contraction each rep." }
+        ]
+      },
+      {
+        name: "Thighs",
+        short: "Inner & outer thigh work",
+        machines: [
+          { img: "thigh1.PNG", title: "Adductor Machine", short: "Inner thigh", impact: "Adductors", how: "Controlled squeeze each rep." },
+          { img: "thigh2.PNG", title: "Abductor Machine", short: "Outer thigh", impact: "Abductors & glutes", how: "Slow outward drive." },
+          { img: "thigh3.PNG", title: "Cable Side Lunge", short: "Lateral strength", impact: "Adductors, quads", how: "Step out, control return." },
+          { img: "thigh4.PNG", title: "Step-Up Box", short: "Functional strength", impact: "Quads, glutes", how: "Drive through heel on ascent." }
+        ]
+      },
+      {
+        name: "Neck",
+        short: "Posture & neck strength",
+        machines: [
+          { img: "neck1.PNG", title: "Neck Harness", short: "Neck extension/ flexion", impact: "Neck stabilizers", how: "Short controlled reps." },
+          { img: "neck2.PNG", title: "Isometric Holds", short: "Static strength", impact: "Neck endurance", how: "Hold tension safely." },
+          { img: "neck3.PNG", title: "Resistance Band Drills", short: "Mobility", impact: "Neck mobility", how: "Slow controlled motions." },
+          { img: "neck4.PNG", title: "Neck Curl Machine", short: "Direct training", impact: "Neck flexors", how: "Small range, high control." }
+        ]
+      },
+      {
+        name: "Cardio",
+        short: "Treadmills, bikes & rowers",
+        machines: [
+          { img: "cardio1.PNG", title: "Treadmill", short: "Running & intervals", impact: "Cardio endurance, legs", how: "Warm-up, steady intervals." },
+          { img: "cardio2.PNG", title: "Spin Bike", short: "High-intensity cycling", impact: "Legs, cardio", how: "Use resistance & cadence work." },
+          { img: "cardio3.PNG", title: "Elliptical", short: "Low-impact cardio", impact: "Cardio, lower body", how: "Longer sessions, steady pace." },
+          { img: "cardio4.PNG", title: "Rowing Machine", short: "Full-body cardio", impact: "Back, legs, cardio", how: "Power from legs then pull." }
+        ]
+      },
+      {
+        name: "Swimming",
+        short: "Pool-based training & recovery",
+        machines: [
+          { img: "swim1.PNG", title: "Lap Pool", short: "Endurance & technique", impact: "Full body cardio", how: "Use drills and intervals." },
+          { img: "swim2.PNG", title: "Kickboard Drills", short: "Leg focus", impact: "Quads & glutes", how: "Isolated leg kicking." },
+          { img: "swim3.PNG", title: "Aqua Bikes", short: "Low-impact cycling", impact: "Cardio & legs", how: "Moderate resistance cycling." },
+          { img: "swim4.PNG", title: "Pool Resistance Tools", short: "Rehab & stability", impact: "Core & smaller muscles", how: "Controlled movements against water." }
+        ]
+      },
+      {
+        name: "Spa",
+        short: "Recovery & relaxation",
+        machines: [
+          { img: "spa1.PNG", title: "Steam Room", short: "Detox & relax", impact: "Recovery", how: "Short sessions to recover." },
+          { img: "spa2.PNG", title: "Hydrotherapy", short: "Muscle relief", impact: "Recovery & blood flow", how: "Alternating temps helps recovery." },
+          { img: "spa3.PNG", title: "Massage Chairs", short: "Tension release", impact: "Back & shoulders", how: "Use after heavy sessions." },
+          { img: "spa4.PNG", title: "Hot Stone Therapy", short: "Deep relaxation", impact: "Muscle release", how: "Use professionally guided sessions." }
+        ]
+      },
+      {
+        name: "Yoga & Studio",
+        short: "Flexibility, balance & classes",
+        machines: [
+          { img: "yoga1.PNG", title: "Studio Floor", short: "Mat-based practice", impact: "Flexibility & balance", how: "Follow instructor guidance." },
+          { img: "yoga2.PNG", title: "Props & Blocks", short: "Support & alignment", impact: "Technique & mobility", how: "Use props to extend reach." },
+          { img: "yoga3.PNG", title: "Pilates Reformers", short: "Core & control", impact: "Core strength", how: "Smooth controlled reps." },
+          { img: "yoga4.PNG", title: "Breathwork Area", short: "Recovery & focus", impact: "Mental recovery", how: "Practice breathing patterns." }
+        ]
+      }
+    ];
+
+    /* Render cards */
+    const cardsGrid = document.getElementById('cardsGrid');
+    equipmentList.forEach((eq, idx) => {
+      const card = document.createElement('div');
+      card.className = 'equip-card';
+      card.style.minHeight = '140px';
+      card.innerHTML = `
+        <h3>${eq.name}</h3>
+        <p class="muted">${eq.short}</p>
+      `;
+      card.onclick = () => openEquipModal(idx);
+      const wrapper = document.createElement('div');
+      wrapper.className = ''; // grid cell controlled by CSS grid
+      wrapper.appendChild(card);
+      cardsGrid.appendChild(wrapper);
+    });
+
+    /* Modal population */
+    function openEquipModal(index) {
+      const eq = equipmentList[index];
+      document.getElementById('modalTitle').innerText = eq.name;
+
+      // Build modal body showing 4 pictures + detailed text for each machine
+      let html = '';
+      eq.machines.forEach(m => {
+        html += `
+          <div class="machine-item">
+            <img src="${m.img}" alt="${m.title}">
+            <div class="mi-text">
+              <strong style="color:#00ffff;">${m.title}</strong>
+              <div style="color:#cfeff0; margin-top:6px;"><em>${m.short}</em></div>
+              <div style="margin-top:6px;"><strong>Muscles impacted:</strong> ${m.impact}</div>
+              <div style="margin-top:6px;"><strong>How to use:</strong> ${m.how}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Optional: extra description area
+      html += `<hr style="border-color:rgba(0,255,255,0.06)"><p class="muted">Tip: Use controlled form, warm up before heavy sets and ask our trainers for guidance.</p>`;
+
+      document.getElementById('modalBody').innerHTML = html;
+
+      // Show bootstrap modal
+      const modalEl = document.getElementById('equipModal');
+      const bsModal = new bootstrap.Modal(modalEl);
+      bsModal.show();
+    }
+  </script>
+
+  <!-- Bootstrap JS (kept) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

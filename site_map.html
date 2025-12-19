@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Fitness - Site Map</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="Prime fitness (logo).jpeg" />
+
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      padding-top: 90px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.9rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-family: serif;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #fff;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: #00ffff;
+      box-shadow: 0 0 8px #00ffff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    .dropdown-menu {
+      background-color: #222;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    .dropdown-item {
+      color: #fff;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #00ffff;
+      color: #000;
+    }
+
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .nav-item.dropdown .dropdown-menu {
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+    }
+
+    .navbar {
+      background-color: #111;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    .navbar-nav {
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+
+      .nav-link {
+        margin: 0.3rem 0;
+      }
+    }
+
+    /* NODES (Boxes) */
+    .node {
+      width: 180px;
+      padding: 15px;
+      text-align: center;
+      border-radius: 14px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+      display: block;
+    }
+
+    .node:hover {
+      background: rgba(0, 255, 255, 0.25);
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(0, 255, 255, 0.5);
+    }
+
+    .line-down {
+      width: 2px;
+      height: 40px;
+      background: rgba(0, 255, 255, 0.25);
+      margin: 8px auto 0 auto;
+    }
+
+    /* RESPONSIVE GRID */
+    .sitemap-row {
+      margin-top: 40px;
+    }
+
+    /* Footer */
+    .simple-footer {
+      background: #0b0b0b;
+      border-top: 1px solid rgba(0, 255, 255, 0.25);
+      box-shadow: 0 -4px 12px rgba(0, 255, 255, 0.2);
+    }
+
+    .simple-footer img {
+      width: 22px;
+      height: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar (exact HTML you provided) -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">
+        <img src="Prime fitness (logo).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
+        Prime Fitness
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="equipments.html">Equipments</a></li>
+          <li class="nav-item"><a class="nav-link" href="enquiry.html">Enquiry</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              More
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="membership.html">Membership</a></li>
+              <li><a class="dropdown-item" href="trainer.html">Trainers</a></li>
+              <li><a class="dropdown-item" href="contact.html">Contact</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="site_map.html">Site Map</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- TITLE -->
+  <h1 class="text-center" style="color:#00ffff;text-shadow:0 0 10px #00ffff;">Website Sitemap</h1>
+
+
+  <!-- MAIN CENTERED NODE -->
+  <div class="d-flex justify-content-center mt-4">
+    <a class="node" href="home.html">PRIME FITNESS</a>
+  </div>
+
+
+  <!-- GRID CONTENT -->
+  <div class="container sitemap-row">
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- HOME -->
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a class="node" href="home.html">HOME</a>
+        <div class="line-down"></div>
+        <a class="node mt-3" href="home.html#facility">Facility</a>
+        <a class="node mt-3" href="home.html#bmi">BMI Calculator</a>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a class="node" href="about.html">ABOUT US</a>
+        <div class="line-down"></div>
+        <a class="node mt-3" href="about.html#expertise">Expertise</a>
+        <a class="node mt-3" href="about.html#whyus">Why Us</a>
+        <a class="node mt-3" href="about.html#team">Our Team</a>
+      </div>
+
+      <!-- TRAINER + CONTACT -->
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a class="node" href="trainer.html">TRAINER</a>
+        <div class="line-down"></div>
+        <a class="node mt-3" href="contact.html">CONTACT US</a>
+      </div>
+
+      <!-- MEMBERSHIP -->
+      <div class="col-12 col-sm-6 col-lg-3 text-center">
+        <a class="node" href="membership.html">MEMBERSHIP</a>
+        <div class="line-down"></div>
+        <a class="node mt-3" href="membership.html">Silver Package</a>
+        <a class="node mt-3" href="membership.html">Gold Package</a>
+        <a class="node mt-3" href="membership.html">Platinum Package</a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="simple-footer text-center py-3 mt-5">
+    <p class="mb-1">© 2025 Prime Fitness — All Rights Reserved</p>
+    <div>
+      <a href="https://facebook.com"><img src="facebook.png"></a>
+      <a href="https://instagram.com"><img src="instagram.png"></a>
+      <a href="https://youtube.com"><img src="youtube.png"></a>
+    </div>
+  </footer>
+
+
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

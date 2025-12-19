@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Fitness</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="Prime fitness (logo).jpeg" />
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+      /* keeps it above all content */
+    }
+
+    body {
+      padding-top: 80px;
+      /* adjust based on your navbar height */
+    }
+
+    /* Navbar brand styling */
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.9rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-family: serif;
+    }
+
+    /* Neon hover effect */
+    .nav-link {
+      position: relative;
+      color: #fff;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      /* adds space around each link */
+      margin: 0 0.5rem;
+      /* adds horizontal spacing between links */
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: #00ffff;
+      box-shadow: 0 0 8px #00ffff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    /* Dropdown styling */
+    .dropdown-menu {
+      background-color: #222;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    .dropdown-item {
+      color: #fff;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #00ffff;
+      color: #000;
+    }
+
+    /* Center dropdown under parent */
+    .nav-item.dropdown {
+      position: relative;
+    }
+
+    .nav-item.dropdown .dropdown-menu {
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+    }
+
+    /* Navbar background */
+    .navbar {
+      background-color: #111;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    /* Center links */
+    .navbar-nav {
+      margin: 0 auto;
+      /* centers the whole nav list */
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+
+      .nav-link {
+        margin: 0.3rem 0;
+        /* stack spacing for mobile */
+      }
+    }
+
+    /* FAQ SECTION */
+    .faq-section {
+      padding: 70px 0;
+    }
+
+    .faq-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-align: center;
+      margin-bottom: 45px;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    /* ACCORDION DESIGN */
+    .accordion-item {
+      background-color: #111;
+      border: 1px solid #00ffff33;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 12px #00ffff22;
+      transition: 0.3s ease;
+    }
+
+    .accordion-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 18px #00ffff55;
+    }
+
+    /* Accordion Buttons */
+    .accordion-button {
+      background-color: #151515;
+      color: #00ffff;
+      font-weight: bold;
+      padding: 18px;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      border: none;
+      box-shadow: none;
+    }
+
+    .accordion-button:hover {
+      background-color: #00ffff22;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #00ffff;
+      color: #000;
+      box-shadow: 0 0 15px #00ffffaa;
+    }
+
+    /* Accordion Body */
+    .accordion-body {
+      background-color: #0f0f0f;
+      color: #e6e6e6;
+      padding: 18px 20px;
+      border-left: 3px solid #00ffff;
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 0 10px #00ffff33;
+      animation: fadeUp 0.4s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SCROLLBAR (Neon Style) */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00ffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00e6e6;
+    }
+
+    /* ===== SIMPLE FOOTER ===== */
+
+    .simple-footer {
+      background: #0b0b0b;
+      border-top: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 -2px 15px rgba(0, 255, 255, 0.15);
+    }
+
+    .footer-text {
+      color: #cccccc;
+      font-size: 0.95rem;
+    }
+
+    .footer-icons a {
+      color: #e0e0e0;
+      font-size: 22px;
+      margin: 0 8px;
+      transition: 0.3s ease;
+    }
+
+    .footer-icons a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      transform: translateY(-3px);
+    }
+
+    .simple-footer img {
+      width: 22px !important;
+      /* Adjust to your liking */
+      height: 22px !important;
+      object-fit: contain;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="home.html">
+        <img src="Prime fitness (logo).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
+        Prime Fitness
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="faqs.html">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="equipments.html">Equipments</a></li>
+          <li class="nav-item"><a class="nav-link" href="enquiry.html">Enquiry</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              More
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="membership.html">Membership</a></li>
+              <li><a class="dropdown-item" href="trainer.html">Trainers</a></li>
+              <li><a class="dropdown-item" href="contact.html">Contact</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="site_map.html">Site Map</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FAQ Section -->
+  <section class="faq-section container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+
+      <!-- Q1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+            What are your membership plans?
+          </button>
+        </h2>
+        <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            We offer flexible monthly, quarterly, and annual membership plans tailored to your fitness goals.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse2">
+            Do you provide personal trainers?
+          </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, certified personal trainers are available to guide you through customized workout programs.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse3">
+            What facilities are included in membership?
+          </button>
+        </h2>
+        <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Membership includes access to gym equipment, swimming pool, group classes, and spa facilities.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse4">
+            Do you offer trial sessions?
+          </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, we provide one-day trial passes so you can experience our facilities before joining.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse5">
+            What are your gym timings?
+          </button>
+        </h2>
+        <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            We are open from 6:00 AM to 11:00 PM every day, including weekends.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse6">
+            Do you have ladies-only hours or sections?
+          </button>
+        </h2>
+        <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, we offer dedicated ladies-only hours and separate training areas for privacy and comfort.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq7">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse7">
+            Is parking available?
+          </button>
+        </h2>
+        <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, free and secure parking is available for all members.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq8">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse8">
+            Do you provide diet or nutrition plans?
+          </button>
+        </h2>
+        <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, our nutrition experts provide customized diet plans to match your fitness goals.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq9">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse9">
+            Can I pause or freeze my membership?
+          </button>
+        </h2>
+        <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, members can freeze their membership for up to 30 days per year.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq10">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse10">
+            Do you have separate lockers?
+          </button>
+        </h2>
+        <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, secure personal lockers are available for all members.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq11">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse11">
+            What payment methods do you accept?
+          </button>
+        </h2>
+        <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            We accept cash, bank transfer, and online payment options.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq12">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse12">
+            Is there an age limit to join?
+          </button>
+        </h2>
+        <div id="collapse12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Members must be at least 14 years old; minors require a guardian's consent.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq13">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse13">
+            Do you offer group fitness classes?
+          </button>
+        </h2>
+        <div id="collapse13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes! We offer Zumba, HIIT, Spin Class, Yoga, and Strength Training groups.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq14">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse14">
+            Is Wi-Fi available?
+          </button>
+        </h2>
+        <div id="collapse14" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, free high-speed Wi-Fi is available throughout the facility.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq15">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse15">
+            Do you have showers and changing rooms?
+          </button>
+        </h2>
+        <div id="collapse15" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, clean and hygienic shower and changing room facilities are available.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq16">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse16">
+            Are personal training sessions charged separately?
+          </button>
+        </h2>
+        <div id="collapse16" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, personal training sessions have separate fee packages.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq17">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse17">
+            Can I bring a friend with me?
+          </button>
+        </h2>
+        <div id="collapse17" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Members can bring a guest using our paid guest pass.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq18">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse18">
+            Do you have cardio and strength equipment?
+          </button>
+        </h2>
+        <div id="collapse18" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, we have modern cardio machines, free weights, and strength-training equipment.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq19">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse19">
+            Do you offer weight loss and transformation programs?
+          </button>
+        </h2>
+        <div id="collapse19" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, our expert coaches run structured transformation and fat-loss programs.
+          </div>
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="faq20">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse20">
+            Are there any additional charges I should know about?
+          </button>
+        </h2>
+        <div id="collapse20" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Only personal training, guest passes, and some premium classes require additional fees.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SIMPLE FOOTER START ===== -->
+  <footer class="simple-footer text-center py-3 mt-5">
+    <p class="footer-text mb-1">© 2025 Prime Fitness — All Rights Reserved</p>
+
+    <div class="footer-icons">
+      <a href="https://www.facebook.com/"> <img src="facebook.png"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/"> <img src="instagram.png"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.youtube.com/"> <img src="youtube.png"> <i class="bi bi-youtube"></i></a>
+    </div>
+  </footer>
+  <!-- ===== SIMPLE FOOTER END ===== -->
+
+
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

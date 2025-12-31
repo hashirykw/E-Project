@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prime Fitness</title>
+  <title>Faq's - Prime Fitness</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -26,12 +26,10 @@
       top: 0;
       width: 100%;
       z-index: 9999;
-      /* keeps it above all content */
     }
 
     body {
       padding-top: 80px;
-      /* adjust based on your navbar height */
     }
 
     /* Navbar brand styling */
@@ -49,9 +47,7 @@
       color: #fff;
       transition: color 0.3s ease;
       padding: 0.5rem 1rem;
-      /* adds space around each link */
       margin: 0 0.5rem;
-      /* adds horizontal spacing between links */
     }
 
     .nav-link::after {
@@ -96,7 +92,6 @@
       color: #000;
     }
 
-    /* Center dropdown under parent */
     .nav-item.dropdown {
       position: relative;
     }
@@ -116,7 +111,6 @@
     /* Center links */
     .navbar-nav {
       margin: 0 auto;
-      /* centers the whole nav list */
     }
 
     /* Responsive tweaks */
@@ -127,7 +121,6 @@
 
       .nav-link {
         margin: 0.3rem 0;
-        /* stack spacing for mobile */
       }
     }
 
@@ -205,7 +198,6 @@
       }
     }
 
-    /* SCROLLBAR (Neon Style) */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -252,9 +244,21 @@
 
     .simple-footer img {
       width: 22px !important;
-      /* Adjust to your liking */
       height: 22px !important;
       object-fit: contain;
+    }
+
+    .simple-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    body {
+      padding-bottom: 90px;
+      /* adjust if footer height changes */
     }
   </style>
 </head>
@@ -264,7 +268,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html">
+      <a class="navbar-brand" href="index.html">
         <img src="Prime fitness (logo).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
         Prime Fitness
       </a>

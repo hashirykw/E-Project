@@ -29,16 +29,14 @@
       top: 0;
       width: 100%;
       z-index: 9999;
-      /* keeps it above all content */
     }
 
     body {
       padding-top: 80px;
-      /* adjust based on your navbar height */
     }
 
 
-    /* ⭐ NAVBAR (UNTOUCHED) */
+    /* NAVBAR  */
     .navbar-brand {
       font-weight: bold;
       font-size: 1.9rem;
@@ -111,7 +109,7 @@
       margin: 0 auto;
     }
 
-    /* ⭐ CONTACT PAGE LAYOUT */
+    /* CONTACT PAGE LAYOUT */
     .contact-section {
       margin-top: 40px;
       padding: 20px;
@@ -176,7 +174,7 @@
       margin-top: 5px;
     }
 
-    /* ⭐ MAP STYLING */
+    /* MAP STYLING */
     .map-container {
       margin-top: 40px;
       border-radius: 12px;
@@ -218,12 +216,11 @@
 
     .simple-footer img {
       width: 22px !important;
-      /* Adjust to your liking */
       height: 22px !important;
       object-fit: contain;
     }
 
-    /* ⭐ POPUP OVERLAY */
+    /* POPUP OVERLAY */
     .popup-overlay {
       display: none;
       position: fixed;
@@ -238,7 +235,7 @@
       align-items: center;
     }
 
-    /* ⭐ POPUP BOX */
+    /* POPUP BOX */
     .popup-box {
       background: #111;
       border: 2px solid #00ffff;
@@ -291,7 +288,7 @@
       box-shadow: 0 0 10px #00ffff;
     }
 
-    /* ⭐ MAKE POPUP MORE RESPONSIVE */
+    /* POPUP */
     @media (max-width: 360px) {
       .popup-box {
         width: 90%;
@@ -303,10 +300,10 @@
 
 <body>
 
-  <!-- ⭐ NAVBAR (UNCHANGED) -->
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home.html">
+      <a class="navbar-brand" href="index.html">
         <img src="Prime fitness (logo).png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top" />
         Prime Fitness
       </a>
@@ -336,17 +333,17 @@
     </div>
   </nav>
 
-  <!-- ⭐ CONTACT HEADER -->
+  <!-- CONTACT HEADER -->
   <div class="text-center mt-4">
     <h1 style="color:#00ffff;text-shadow:0 0 8px #00ffff;" class="fw-bold">Contact Us</h1>
     <p class="text-light">Let’s connect — We are here to assist you.</p>
   </div>
 
-  <!-- ⭐ MAIN CONTACT SECTION -->
+  <!-- MAIN CONTACT SECTION -->
   <div class="container contact-section">
     <div class="row g-4">
 
-      <!-- ⭐ LEFT COLUMN – Contact Form -->
+      <!-- LEFT COLUMN – Contact Form -->
       <div class="col-lg-6">
         <div class="contact-card">
           <h4 class="mb-3">Send Us a Message</h4>
@@ -389,7 +386,7 @@
         </div>
       </div>
 
-      <!-- ⭐ RIGHT COLUMN – Contact Info -->
+      <!-- RIGHT COLUMN – Contact Info -->
       <div class="col-lg-6">
         <div class="contact-info-box mb-3">
           <h4>📍 Address</h4>
@@ -414,17 +411,17 @@
     </div>
   </div>
 
-  <!-- ⭐ MAP SECTION -->
+  <!-- MAP SECTION -->
   <div class="container map-container">
     <iframe src="https://maps.google.com/maps?q=Karachi&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
   </div>
 
-  <!-- ⭐ SUCCESS MESSAGE -->
+  <!-- SUCCESS MESSAGE -->
   <div class="alert alert-success text-center mt-4" id="successMsg" style="display:none;">
     ✅ Your message has been sent successfully!
   </div>
 
-  <!-- ⭐ POPUP ELEMENT -->
+  <!-- POPUP ELEMENT -->
   <div class="popup-overlay" id="popup">
     <div class="popup-box">
       <h3>Message Sent!</h3>
@@ -447,7 +444,7 @@
 
 
 
-  <!-- ⭐ FORM VALIDATION SCRIPT -->
+  <!-- FORM VALIDATION SCRIPT -->
   <script>
     $(document).ready(function () {
 
@@ -458,13 +455,13 @@
         $(".error").remove();
         $("#successMsg").hide();
 
-        // ⭐ Name validation
+        // Name validation
         if ($("#name").val().trim() === "") {
           $("#name").after('<div class="error">⚠ Required</div>');
           valid = false;
         }
 
-        // ⭐ Email validation
+        // Email validation
         let emailVal = $("#email").val().trim();
         let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/i;
         if (!emailPattern.test(emailVal)) {
@@ -472,7 +469,7 @@
           valid = false;
         }
 
-        // ⭐ Phone validation
+        // Phone validation
         let phoneVal = $("#phone").val().trim();
         let phonePattern = /^[0-9]{10,15}$/;
         if (!phonePattern.test(phoneVal)) {
@@ -480,34 +477,34 @@
           valid = false;
         }
 
-        // ⭐ Subject validation
+        // Subject validation
         if ($("#subject").val() === "") {
           $("#subject").after('<div class="error">⚠ Select a subject</div>');
           valid = false;
         }
 
-        // ⭐ Message validation
+        // Message validation
         if ($("#message").val().trim() === "") {
           $("#message").after('<div class="error">⚠ Message required</div>');
           valid = false;
         }
 
-        // ⭐ If everything is valid
+        // If everything is valid
         if (valid) {
 
           $("#contactForm")[0].reset();
 
-          // ⭐ SHOW POPUP
+          // SHOW POPUP
           $("#popup").fadeIn(300);
 
-          // ⭐ AUTO CLOSE (2.5 seconds)
+          // AUTO CLOSE (2.5 seconds)
           setTimeout(() => {
             $("#popup").fadeOut(300);
           }, 2500);
         }
       });
 
-      // ⭐ CLOSE POPUP ON BUTTON CLICK
+      // CLOSE POPUP ON BUTTON CLICK
       $("#closePopup").click(function () {
         $("#popup").fadeOut(300);
       });
